@@ -1,3 +1,6 @@
+import { readFileSync } from "fs";
+import { join } from "path";
+
 export interface Playlist {
   id: string;
   name: string;
@@ -5,23 +8,20 @@ export interface Playlist {
   songs: string[];
 }
 
-export const playlists: Playlist[] = [
-  {
-    id: "1",
-    name: "Playlist 1",
-    userId: "1",
-    songs: ["1", "2"],
-  },
-  {
-    id: "2",
-    name: "Playlist 2",
-    userId: "2",
-    songs: ["3"],
-  },
-  {
-    id: "3",
-    name: "Playlist 3",
-    userId: "3",
-    songs: ["1", "3"],
-  },
-];
+const dataPath = join(__dirname, "../../data.json");
+const rawData = readFileSync(dataPath, "utf-8");
+const data = JSON.parse(rawData);
+
+const userIdMap = new Map<number, string>();
+data.users.forEach((user: { id: number }) => {
+  userIdMap.set(user.id, user.id.toString());
+});
+
+export const playlists: Playlist[] = data.playlists.map(
+  (playlist: { id: number; name: string; songs: number[] }) => ({
+    id: playlist.id.toString(),
+    name: playlist.name,
+    userId: userIdMap.get(playlist.id) || "",
+    songs: playlist.songs.map((songId) => songId.toString()),
+  })
+);
