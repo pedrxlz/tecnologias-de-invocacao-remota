@@ -1,0 +1,138 @@
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://example.com/streaming"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             targetNamespace="http://example.com/streaming">
+  <types>
+    <xsd:schema targetNamespace="http://example.com/streaming">
+      <!-- User Type -->
+      <xsd:complexType name="User">
+        <xsd:sequence>
+          <xsd:element name="id" type="xsd:string"/>
+          <xsd:element name="name" type="xsd:string"/>
+          <xsd:element name="age" type="xsd:int"/>
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <!-- Song Type -->
+      <xsd:complexType name="Song">
+        <xsd:sequence>
+          <xsd:element name="id" type="xsd:string"/>
+          <xsd:element name="name" type="xsd:string"/>
+          <xsd:element name="artist" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <!-- Playlist Type -->
+      <xsd:complexType name="Playlist">
+        <xsd:sequence>
+          <xsd:element name="id" type="xsd:string"/>
+          <xsd:element name="name" type="xsd:string"/>
+          <xsd:element name="songs" type="xsd:string" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <!-- GetAllUsersResponse -->
+      <xsd:element name="GetAllUsersResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="users" type="tns:User" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <!-- GetAllSongsResponse -->
+      <xsd:element name="GetAllSongsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="songs" type="tns:Song" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <!-- GetAllPlaylistsResponse -->
+      <xsd:element name="GetAllPlaylistsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="playlists" type="tns:Playlist" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </types>
+
+  <!-- Messages -->
+  <message name="GetAllUsersRequest">
+    <part name="parameters" element="tns:GetAllUsersRequest"/>
+  </message>
+  <message name="GetAllUsersResponse">
+    <part name="parameters" element="tns:GetAllUsersResponse"/>
+  </message>
+  <message name="GetAllSongsRequest">
+    <part name="parameters" element="tns:GetAllSongsRequest"/>
+  </message>
+  <message name="GetAllSongsResponse">
+    <part name="parameters" element="tns:GetAllSongsResponse"/>
+  </message>
+  <message name="GetAllPlaylistsRequest">
+    <part name="parameters" element="tns:GetAllPlaylistsRequest"/>
+  </message>
+  <message name="GetAllPlaylistsResponse">
+    <part name="parameters" element="tns:GetAllPlaylistsResponse"/>
+  </message>
+
+  <!-- PortType -->
+  <portType name="StreamingPortType">
+    <operation name="GetAllUsers">
+      <input message="tns:GetAllUsersRequest"/>
+      <output message="tns:GetAllUsersResponse"/>
+    </operation>
+    <operation name="GetAllSongs">
+      <input message="tns:GetAllSongsRequest"/>
+      <output message="tns:GetAllSongsResponse"/>
+    </operation>
+    <operation name="GetAllPlaylists">
+      <input message="tns:GetAllPlaylistsRequest"/>
+      <output message="tns:GetAllPlaylistsResponse"/>
+    </operation>
+  </portType>
+
+  <!-- Binding -->
+  <binding name="StreamingBinding" type="tns:StreamingPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="GetAllUsers">
+      <soap:operation soapAction="http://example.com/streaming#GetAllUsers"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="GetAllSongs">
+      <soap:operation soapAction="http://example.com/streaming#GetAllSongs"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="GetAllPlaylists">
+      <soap:operation soapAction="http://example.com/streaming#GetAllPlaylists"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+
+  <!-- Service -->
+  <service name="StreamingService">
+    <port name="StreamingPort" binding="tns:StreamingBinding">
+      <soap:address location="http://localhost:8000/"/>
+    </port>
+  </service>
+</definitions>

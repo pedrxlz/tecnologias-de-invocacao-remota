@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "@types/express": "^5.0.0",
+    "@types/soap": "^0.21.0",
+    "@types/node": "^22.9.3",
+    "express": "^4.21.1",
+    "soap": "^1.1.6",
+    "nodemon": "^3.1.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  },
+  "scripts": {
+    "start": "ts-node src/server.ts",
+    "dev": "nodemon src/server.ts",
+    "nodemon": "^3.1.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  }
+}

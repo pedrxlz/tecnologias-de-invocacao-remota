@@ -1,5 +1,5 @@
 import { gql } from "graphql-tag";
-import data from "./data.json";
+import data from "../data.json";
 
 export const typeDefs = gql`
   type User {
