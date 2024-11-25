@@ -57,26 +57,4 @@ const server = app.listen(8000, () => {
   console.log("SOAP server listening on port 8000");
 });
 
-app.use((req, res, next) => {
-  console.log(`Received request: ${req.method} ${req.url}`);
-  console.log(req.body.toString());
-  next();
-});
-
 soap.listen(server, "/", service, wsdl);
-
-// soap.createClient(wsdlPath, (err, client) => {
-//   if (err) {
-//     console.error(err);
-//   } else {
-//     console.log("SOAP client initialized");
-
-//     client.GetAllUsers({}, (err: any, res: any) => {
-//       if (err) {
-//         console.error(err);
-//       } else {
-//         console.log(res);
-//       }
-//     });
-//   }
-// });

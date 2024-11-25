@@ -6,7 +6,7 @@ import bodyParser from "body-parser";
 import { typeDefs, resolvers } from "./schema";
 
 const app = express();
-const PORT = 4000;
+const PORT = 8000;
 
 // Inicializar o Apollo Server
 const server = new ApolloServer({
