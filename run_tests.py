@@ -50,10 +50,10 @@ if __name__ == "__main__":
         print("Uso: python script.py <serviço> <locustfile>")
         sys.exit(1)
 
-    service_name = sys.argv[1]  # Exemplo: "soap-api"
+    service_name = sys.argv[1]
     host = "http://localhost:8000"
-    users = 10
-    spawn_rate = 2
+    users = 500
+    spawn_rate = 20
     run_time = "1m"
 
     run_service_and_tests(service_name, host, users, spawn_rate, run_time)
