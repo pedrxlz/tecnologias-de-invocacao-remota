@@ -11,11 +11,6 @@ def run_service_and_tests(service_name, host, users=10, spawn_rate=2, run_time="
         os.chdir(service_name)
         print(f"[INFO] Navegando para o diretório: {os.getcwd()}")
 
-        # print(f"[INFO] Iniciando o serviço: {service_name}")
-        # service_process = subprocess.Popen(
-        #     ["pnpm", "start"], stdout=subprocess.PIPE, stderr=subprocess.PIPE
-        # )
-
         print(f"[INFO] Serviço {service_name} iniciado. Executando testes de carga...")
 
         result_file_base = os.path.join("..", results_dir, f"{service_name}")
@@ -38,11 +33,6 @@ def run_service_and_tests(service_name, host, users=10, spawn_rate=2, run_time="
 
     except Exception as e:
         print(f"[ERROR] Ocorreu um erro: {e}")
-    finally:
-        print(f"[INFO] Finalizando o serviço: {service_name}")
-        # service_process.terminate()
-        # service_process.wait()
-        print(f"[INFO] Serviço {service_name} finalizado.")
 
 
 if __name__ == "__main__":

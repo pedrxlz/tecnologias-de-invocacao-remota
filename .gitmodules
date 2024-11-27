@@ -1,0 +1,3 @@
+[submodule "grpc-api/music-service-grpc"]
+	path = grpc-api/music-service-grpc
+	url = https://github.com/pedrxlz/music-service-grpc.git
